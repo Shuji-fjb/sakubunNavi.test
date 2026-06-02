@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>作文ナビ PC版 ワイヤーフレーム</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ ① ログイン ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    
+    <span class="tag-id">起動時・未認証</span>
+  </div>
+  <div class="login-screen">
+    <div class="login-box">
+      <div class="login-logo">
+        <div class="logo-name">作文ナビ</div>
+        <div class="logo-tag">AIに頼らず、自分で書く力を取り戻す</div>
+      </div>
+
+      <div style="text-align: center; padding: 24px 0 32px;">
+        <div style="font-size: 13px; color: var(--text-sub); margin-bottom: 4px;">アカウントをお持ちの方も</div>
+        <div style="font-size: 13px; color: var(--text-sub);">初めての方もこちらから</div>
+      </div>
+
+      <!-- Google ログインボタン(Google公式デザイン準拠) -->
+      <button class="btn google-login-btn" style="width: 100%;">
+        <span class="google-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+            <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
+            <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
+            <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/>
+            <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+          </svg>
+        </span>
+        <span>Googleでログイン</span>
+      </button>
+
+      <div style="text-align: center; margin-top: 16px; font-size: 11px; color: var(--text-sub); line-height: 1.6;">
+        初めての方も同じボタンで<br>自動的にアカウントが作成されます
+      </div>
+
+      <div style="border-top: 1px solid var(--border-light); margin-top: 32px; padding-top: 16px; text-align: center; font-size: 11px; color: var(--text-sub);">
+        ログインすることで<br>
+        <a href="利用規約_プライバシーポリシー_作文ナビ.html" style="color: var(--primary);">利用規約</a>
+        および
+        <a href="利用規約_プライバシーポリシー_作文ナビ.html" style="color: var(--primary);">プライバシーポリシー</a>
+        に同意したものとみなされます
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ② ホーム ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>② ホーム画面</span>
+    <span class="tag-id">ログイン後のメイン画面</span>
+  </div>
+  <div class="app">
+    <!-- サイドバー -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item active"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <!-- メイン -->
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">ダッシュボード</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="hero-card">
+          <div>
+            <h2>今日の一問</h2>
+            <p>あなたの強みを300字で書いてみましょう</p>
+          </div>
+          <button class="hero-card-btn">今すぐ書く →</button>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">✎</div>
+            <div class="feature-name">AI作文添削</div>
+            <div class="feature-desc">4軸スコアで採点</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">語</div>
+            <div class="feature-name">語彙クイズ</div>
+            <div class="feature-desc">4択で語彙力アップ</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">B</div>
+            <div class="feature-name">ビジネスクイズ</div>
+            <div class="feature-desc">敬語・メール対応</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <div class="feature-name">学習記録</div>
+            <div class="feature-desc">成長を見える化</div>
+          </div>
+        </div>
+
+        <div class="home-bottom-grid">
+          <div class="card">
+            <div class="card-title">最近の添削結果</div>
+            <div class="history-item">
+              <div>
+                <div class="history-title">自己PR(300字)</div>
+                <div class="history-meta">2026/10/15</div>
+              </div>
+              <div class="history-score">85</div>
+            </div>
+            <div class="history-item">
+              <div>
+                <div class="history-title">ガクチカ(500字)</div>
+                <div class="history-meta">2026/10/13</div>
+              </div>
+              <div class="history-score">72</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">広告枠</div>
+            <div class="ad-banner">広告</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ③ お題選択 ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>③ お題選択画面</span>
+    <span class="tag-id">AI作文添削のスタート</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item active"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / AI作文添削 / <span class="current">お題選択</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">どうやって練習しますか?</div>
+        <div class="topic-layout">
+          <div class="topic-option-card free">
+            <div class="card-title">📝 自分でお題を入力</div>
+            <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 16px;">
+              実際の企業ES設問をそのまま貼り付けて練習できます
+            </p>
+            <label class="label">お題(200字以内)</label>
+            <textarea class="textarea-field" style="min-height: 120px;" placeholder="例:学生時代に最も困難だった経験について、どう乗り越えたかを400字以内で記述してください"></textarea>
+            <button class="btn" style="width: 100%;">この内容で次へ →</button>
+          </div>
+          <div class="topic-option-card">
+            <div class="card-title">📚 お題ライブラリから選ぶ</div>
+            <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 16px;">
+              定番のお題を選んで練習できます
+            </p>
+            <div class="category-list">
+              <div class="category-item"><span>自己PR</span><span class="category-count">20問</span></div>
+              <div class="category-item"><span>ガクチカ</span><span class="category-count">20問</span></div>
+              <div class="category-item"><span>志望動機</span><span class="category-count">20問</span></div>
+              <div class="category-item"><span>長所・短所</span><span class="category-count">20問</span></div>
+              <div class="category-item"><span>小論文</span><span class="category-count">15問</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ④ AI作文添削(入力+結果) ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>④ AI作文添削画面</span>
+    <span class="tag-id">入力 + 添削結果(2カラム)</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item active"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / AI作文添削 / <span class="current">添削結果</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="essay-layout">
+
+          <!-- 右:結果 -->
+          <div>
+            <div class="card">
+              <div class="card-title">添削結果</div>
+
+              <div class="score-hero">
+                <div class="score-number">78</div>
+                <div class="score-info">
+                  <div style="font-size: 12px; opacity: 0.8;">総合スコア</div>
+                  <div style="font-size: 14px;">100点満点中</div>
+                  <div class="score-rank">B評価</div>
+                </div>
+              </div>
+
+              <div class="score-bars">
+                <div class="score-bar-item">
+                  <span>論理性</span>
+                  <div class="score-bar-track"><div class="score-bar-fill" style="width: 80%;"></div></div>
+                  <span style="text-align: right;">20/25</span>
+                </div>
+                <div class="score-bar-item">
+                  <span>構成</span>
+                  <div class="score-bar-track"><div class="score-bar-fill" style="width: 72%;"></div></div>
+                  <span style="text-align: right;">18/25</span>
+                </div>
+                <div class="score-bar-item">
+                  <span>語彙・表現</span>
+                  <div class="score-bar-track"><div class="score-bar-fill" style="width: 88%;"></div></div>
+                  <span style="text-align: right;">22/25</span>
+                </div>
+                <div class="score-bar-item">
+                  <span>内容の深さ</span>
+                  <div class="score-bar-track"><div class="score-bar-fill" style="width: 72%;"></div></div>
+                  <span style="text-align: right;">18/25</span>
+                </div>
+              </div>
+
+              <div style="font-size: 12px; color: var(--text-sub); margin-bottom: 12px;">
+                文字数:234字 / 目標300字(達成率78%)
+              </div>
+
+              <div class="feedback-section">
+                <div class="feedback-title feedback-good">✓ 良い点</div>
+                <ul class="feedback-list">
+                  <li>強みが明確に述べられている</li>
+                  <li>エピソードが具体的</li>
+                </ul>
+              </div>
+
+              <div class="feedback-section">
+                <div class="feedback-title feedback-improve">! 改善点</div>
+                <ul class="feedback-list">
+                  <li>仕事での活かし方が弱い</li>
+                  <li>結論の繰り返しがある</li>
+                </ul>
+              </div>
+
+              <div class="feedback-section">
+                <div class="feedback-title feedback-input">入力した文章</div>
+                <ul class="feedback-list">
+                  <li>自分が入力した文章が出力される</li>
+                </ul>
+              </div>
+
+              <div class="feedback-section">
+                <div class="feedback-title feedback-correction">AIの添削</div>
+                <ul class="feedback-list">
+                  <li>AIの添削した文章が入力される</li>
+                </ul>
+              </div>
+
+              <!--<button class="btn btn-outline" style="width: 100%; margin-top: 12px;">書き直し提案を見る</button>-->
+            </div>
+            <div class="ad-banner">広告</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑤ 語彙クイズ ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑤ 語彙クイズ画面</span>
+    <span class="tag-id">4択クイズ</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item active"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">語彙クイズ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-layout">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+            <span>問題 3 / 10</span>
+            <span style="color: var(--primary); font-weight: 700;">正答率 75%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 30%;"></div>
+          </div>
+
+          <div class="quiz-question">
+            「<strong>忖度</strong>」の意味として正しいものは?
+          </div>
+
+          <div class="quiz-options">
+            <div class="quiz-option">
+              <div class="quiz-option-letter">A</div>
+              <div>物事を細かく分析すること</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">B</div>
+              <div>他人の心を推し量ること</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">C</div>
+              <div>遠慮して控えめにすること</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">D</div>
+              <div>表面的に判断すること</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <div class="ad-banner">広告</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑤-2 語彙クイズ (解答結果) ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑤-2 語彙クイズ画面 (解答結果)</span>
+    <span class="tag-id">不正解表示・解説</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item active"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">語彙クイズ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-layout">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+            <span>問題 3 / 10</span>
+            <span style="color: var(--primary); font-weight: 700;">正答率 75%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 30%;"></div>
+          </div>
+
+          <div style="text-align: center; margin: 24px 0;">
+            <div style="font-size: 28px; font-weight: 700; color: #3498DB;">❌ 不正解...</div>
+          </div>
+
+          <div class="quiz-question">
+            「<strong>忖度</strong>」の意味として正しいものは?
+          </div>
+
+          <div class="quiz-options">
+            <div class="quiz-option" style="opacity: 0.5;">
+              <div class="quiz-option-letter">A</div>
+              <div>物事を細かく分析すること</div>
+            </div>
+            <div class="quiz-option" style="border: 2px solid #E74C3C; background-color: rgba(231, 76, 60, 0.05);">
+              <div class="quiz-option-letter" style="background-color: #E74C3C; color: #FFF; border-color: #E74C3C;">B</div>
+              <div style="font-weight: 700; color: #E74C3C;">他人の心を推し量ること</div>
+              <div style="margin-left: auto; font-size: 12px; font-weight: bold; color: #E74C3C;">正解</div>
+            </div>
+            <div class="quiz-option" style="border: 2px solid #3498DB; background-color: rgba(52, 152, 219, 0.05);">
+              <div class="quiz-option-letter" style="background-color: #3498DB; color: #FFF; border-color: #3498DB;">C</div>
+              <div style="font-weight: 700; color: #3498DB;">遠慮して控えめにすること</div>
+              <div style="margin-left: auto; font-size: 12px; font-weight: bold; color: #3498DB;">あなたの回答</div>
+            </div>
+            <div class="quiz-option" style="opacity: 0.5;">
+              <div class="quiz-option-letter">D</div>
+              <div>表面的に判断すること</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: 24px;">
+            <div style="font-weight: 700; font-size: 16px; margin-bottom: 8px;">解説</div>
+            <div style="font-size: 14px; line-height: 1.6; color: var(--text-sub);">
+              「忖度（そんたく）」は、他人の気持ちや考えを推し量ることを意味します。近年では「上の立場の人の意向を推測して行動する」というニュアンスで使われることも多いですが、本来は単に「推し量る」という意味です。
+            </div>
+          </div>
+
+          <button class="btn" style="width: 100%; margin-top: 24px;">次の問題へ (4/10) →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑤-3 語彙クイズ (正解結果) ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑤-3 語彙クイズ画面 (正解結果)</span>
+    <span class="tag-id">正解表示・解説</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item active"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">語彙クイズ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-layout">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+            <span>問題 3 / 10</span>
+            <span style="color: var(--primary); font-weight: 700;">正答率 75%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 30%;"></div>
+          </div>
+
+          <div style="text-align: center; margin: 24px 0;">
+            <div style="font-size: 28px; font-weight: 700; color: #E74C3C;">⭕ 正解！</div>
+          </div>
+
+          <div class="quiz-question">
+            「<strong>忖度</strong>」の意味として正しいものは?
+          </div>
+
+          <div class="quiz-options">
+            <div class="quiz-option" style="opacity: 0.5;">
+              <div class="quiz-option-letter">A</div>
+              <div>物事を細かく分析すること</div>
+            </div>
+            <div class="quiz-option" style="border: 2px solid #E74C3C; background-color: rgba(231, 76, 60, 0.05);">
+              <div class="quiz-option-letter" style="background-color: #E74C3C; color: #FFF; border-color: #E74C3C;">B</div>
+              <div style="font-weight: 700; color: #E74C3C;">他人の心を推し量ること</div>
+              <div style="margin-left: auto; font-size: 12px; font-weight: bold; color: #E74C3C;">正解・あなたの回答</div>
+            </div>
+            <div class="quiz-option" style="opacity: 0.5;">
+              <div class="quiz-option-letter">C</div>
+              <div>遠慮して控えめにすること</div>
+            </div>
+            <div class="quiz-option" style="opacity: 0.5;">
+              <div class="quiz-option-letter">D</div>
+              <div>表面的に判断すること</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: 24px;">
+            <div style="font-weight: 700; font-size: 16px; margin-bottom: 8px;">解説</div>
+            <div style="font-size: 14px; line-height: 1.6; color: var(--text-sub);">
+              「忖度（そんたく）」は、他人の気持ちや考えを推し量ることを意味します。近年では「上の立場の人の意向を推測して行動する」というニュアンスで使われることも多いですが、本来は単に「推し量る」という意味です。
+            </div>
+          </div>
+
+          <button class="btn" style="width: 100%; margin-top: 24px;">次の問題へ (4/10) →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑥-4 語彙クイズ (結果) ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑤-R 語彙クイズ 結果画面</span>
+    <span class="tag-id">クイズ完了後の結果表示</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item active"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / 語彙クイズ / <span class="current">結果</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-layout">
+
+          <!-- スコアヒーロー -->
+          <div class="score-hero" style="margin-bottom: 24px;">
+            <div class="score-number">8</div>
+            <div class="score-info">
+              <div style="font-size: 12px; opacity: 0.8;">正解数</div>
+              <div style="font-size: 14px;">10問中</div>
+              <div class="score-rank">正答率 80%</div>
+            </div>
+          </div>
+
+          <!-- 統計グリッド -->
+          <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 24px;">
+            <div class="stat-card">
+              <div class="stat-value" style="color: var(--success);">8</div>
+              <div class="stat-label">正解</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" style="color: var(--danger);">2</div>
+              <div class="stat-label">不正解</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">1:42</div>
+              <div class="stat-label">所要時間</div>
+            </div>
+          </div>
+
+          <!-- 問題別結果一覧 -->
+          <div class="card" style="margin-bottom: 16px;">
+            <div class="card-title">問題別結果</div>
+
+            <div class="quiz-result-item correct">
+              <div class="quiz-result-num">Q1</div>
+              <div class="quiz-result-body">
+                <div class="quiz-result-q">「忖度」の意味として正しいものは?</div>
+                <div class="quiz-result-a correct-label">✓ 他人の心を推し量ること</div>
+              </div>
+              <div class="quiz-result-badge correct-badge">正解</div>
+            </div>
+
+            <div class="quiz-result-item correct">
+              <div class="quiz-result-num">Q2</div>
+              <div class="quiz-result-body">
+                <div class="quiz-result-q">「蓋然性」の意味として正しいものは?</div>
+                <div class="quiz-result-a correct-label">✓ ある事柄が起こりうる確率・可能性</div>
+              </div>
+              <div class="quiz-result-badge correct-badge">正解</div>
+            </div>
+
+            <div class="quiz-result-item incorrect">
+              <div class="quiz-result-num">Q3</div>
+              <div class="quiz-result-body">
+                <div class="quiz-result-q">「逡巡」の意味として正しいものは?</div>
+                <div class="quiz-result-a incorrect-label">✗ あなたの回答: 素早く決断すること</div>
+                <div class="quiz-result-a correct-label" style="margin-top: 4px;">✓ 正解: ためらって決断できないこと</div>
+              </div>
+              <div class="quiz-result-badge incorrect-badge">不正解</div>
+            </div>
+
+            <div class="quiz-result-item correct">
+              <div class="quiz-result-num">Q4</div>
+              <div class="quiz-result-body">
+                <div class="quiz-result-q">「齟齬」の意味として正しいものは?</div>
+                <div class="quiz-result-a correct-label">✓ 食い違い・かみ合わないこと</div>
+              </div>
+              <div class="quiz-result-badge correct-badge">正解</div>
+            </div>
+
+            <div class="quiz-result-item incorrect">
+              <div class="quiz-result-num">Q5</div>
+              <div class="quiz-result-body">
+                <div class="quiz-result-q">「慮る」の読み方として正しいものは?</div>
+                <div class="quiz-result-a incorrect-label">✗ あなたの回答: おもんばかる</div>
+                <div class="quiz-result-a correct-label" style="margin-top: 4px;">✓ 正解: おもんぱかる</div>
+              </div>
+              <div class="quiz-result-badge incorrect-badge">不正解</div>
+            </div>
+
+            <div style="text-align: center; padding: 8px 0; font-size: 13px; color: var(--text-sub);">… 残り5問(すべて正解)</div>
+          </div>
+
+          <!-- アドバイス -->
+          <div class="feedback-section" style="margin-bottom: 16px;">
+            <div class="feedback-title feedback-improve">! 苦手分野</div>
+            <ul class="feedback-list">
+              <li>動作・状態を表す和語動詞の読み方に注意しましょう</li>
+              <li>「逡巡・躊躇・逡巡」など迷い・ためらいを表す語を復習しましょう</li>
+            </ul>
+          </div>
+          <div class="feedback-section" style="margin-bottom: 24px;">
+            <div class="feedback-title feedback-good">✓ 得意分野</div>
+            <ul class="feedback-list">
+              <li>漢語(四字熟語・二字熟語)の意味理解は高水準です</li>
+              <li>ビジネス系語彙の正答率が特に良好です</li>
+            </ul>
+          </div>
+
+          <!-- アクションボタン -->
+          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+            <button class="btn btn-outline" style="flex: 1;" onclick="changeScreen('screen-vocab')">もう一度挑戦する</button>
+            <button class="btn" style="flex: 1;" onclick="changeScreen('screen-home')">ホームに戻る</button>
+          </div>
+
+          <div class="ad-banner">広告</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑥ ビジネスシチュエーションクイズ ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑥ ビジネスシチュエーションクイズ画面</span>
+    <span class="tag-id">場面別4択クイズ</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item active"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">ビジネスクイズ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-layout">
+          <div class="quiz-tabs">
+            <div class="quiz-tab active">敬語</div>
+            <div class="quiz-tab">メール</div>
+            <div class="quiz-tab">電話</div>
+            <div class="quiz-tab">報連相</div>
+            <div class="quiz-tab">取引先対応</div>
+            <div class="quiz-tab">お詫び</div>
+            <div class="quiz-tab">依頼</div>
+            <div class="quiz-tab">断り方</div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+            <span>問題 1 / 10 (敬語)</span>
+            <span style="color: var(--primary); font-weight: 700;">正答率 80%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 10%;"></div>
+          </div>
+
+          <div class="quiz-question" style="text-align: left; font-size: 15px;">
+            <div style="font-size: 12px; color: var(--text-sub); margin-bottom: 8px;">【場面】取引先からのメール返信</div>
+            「ご確認いただけますでしょうか」の返事として最も適切なのは?
+          </div>
+
+          <div class="quiz-options">
+            <div class="quiz-option">
+              <div class="quiz-option-letter">A</div>
+              <div>確認しました</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">B</div>
+              <div>確認いたしました</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">C</div>
+              <div>ご確認しました</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">D</div>
+              <div>確認させていただきました</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑥-2 ビジネスシチュエーションクイズ (不正解) ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑥-2 ビジネスシチュエーションクイズ画面 (不正解)</span>
+    <span class="tag-id">不正解表示・解説</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item active"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">ビジネスクイズ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-layout">
+          <div class="quiz-tabs">
+            <div class="quiz-tab active">敬語</div>
+            <div class="quiz-tab">メール</div>
+            <div class="quiz-tab">電話</div>
+            <div class="quiz-tab">報連相</div>
+            <div class="quiz-tab">取引先対応</div>
+            <div class="quiz-tab">お詫び</div>
+            <div class="quiz-tab">依頼</div>
+            <div class="quiz-tab">断り方</div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+            <span>問題 1 / 10 (敬語)</span>
+            <span style="color: var(--primary); font-weight: 700;">正答率 80%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 10%;"></div>
+          </div>
+
+          <div style="text-align: center; margin: 24px 0;">
+            <div style="font-size: 28px; font-weight: 700; color: #3498DB;">❌ 不正解...</div>
+          </div>
+
+          <div class="quiz-question" style="text-align: left; font-size: 15px;">
+            <div style="font-size: 12px; color: var(--text-sub); margin-bottom: 8px;">【場面】取引先からのメール返信</div>
+            「ご確認いただけますでしょうか」の返事として最も適切なのは?
+          </div>
+
+          <div class="quiz-options">
+            <div class="quiz-option" style="opacity: 0.5;">
+              <div class="quiz-option-letter">A</div>
+              <div>確認しました</div>
+            </div>
+            <div class="quiz-option" style="border: 2px solid #E74C3C; background-color: rgba(231, 76, 60, 0.05);">
+              <div class="quiz-option-letter" style="background-color: #E74C3C; color: #FFF; border-color: #E74C3C;">B</div>
+              <div style="font-weight: 700; color: #E74C3C;">確認いたしました</div>
+              <div style="margin-left: auto; font-size: 12px; font-weight: bold; color: #E74C3C;">正解</div>
+            </div>
+            <div class="quiz-option" style="border: 2px solid #3498DB; background-color: rgba(52, 152, 219, 0.05);">
+              <div class="quiz-option-letter" style="background-color: #3498DB; color: #FFF; border-color: #3498DB;">C</div>
+              <div style="font-weight: 700; color: #3498DB;">ご確認しました</div>
+              <div style="margin-left: auto; font-size: 12px; font-weight: bold; color: #3498DB;">あなたの回答</div>
+            </div>
+            <div class="quiz-option" style="opacity: 0.5;">
+              <div class="quiz-option-letter">D</div>
+              <div>確認させていただきました</div>
+            </div>
+          </div>
+          
+          <div class="card" style="margin-top: 24px;">
+            <div style="font-weight: 700; font-size: 16px; margin-bottom: 8px;">解説</div>
+            <div style="font-size: 14px; line-height: 1.6; color: var(--text-sub);">
+              「確認する」の謙譲語は「確認いたす」です。したがって「確認いたしました」が最も適切です。<br><br>
+              「ご（お）〜する」の形にする場合は「ご」をつけますが、「ご確認しました」は不自然な表現となります。また、「確認させていただきました」は過剰敬語となるため、シンプルに「確認いたしました」とするのが基本です。
+            </div>
+          </div>
+
+          <button class="btn" style="width: 100%; margin-top: 24px;">次の問題へ (2/10) →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑥-3 ビジネスシチュエーションクイズ (正解結果) ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑥-3 ビジネスシチュエーションクイズ画面 (正解結果)</span>
+    <span class="tag-id">正解表示・解説</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item active"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">ビジネスクイズ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-layout">
+          <div class="quiz-tabs">
+            <div class="quiz-tab active">敬語</div>
+            <div class="quiz-tab">メール</div>
+            <div class="quiz-tab">電話</div>
+            <div class="quiz-tab">報連相</div>
+            <div class="quiz-tab">取引先対応</div>
+            <div class="quiz-tab">お詫び</div>
+            <div class="quiz-tab">依頼</div>
+            <div class="quiz-tab">断り方</div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+            <span>問題 1 / 10 (敬語)</span>
+            <span style="color: var(--primary); font-weight: 700;">正答率 80%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 10%;"></div>
+          </div>
+
+          <div style="text-align: center; margin: 24px 0;">
+            <div style="font-size: 28px; font-weight: 700; color: #E74C3C;">⭕ 正解！</div>
+          </div>
+
+          <div class="quiz-question" style="text-align: left; font-size: 15px;">
+            <div style="font-size: 12px; color: var(--text-sub); margin-bottom: 8px;">【場面】取引先からのメール返信</div>
+            「ご確認いただけますでしょうか」の返事として最も適切なのは?
+          </div>
+
+          <div class="quiz-options">
+            <div class="quiz-option" style="opacity: 0.5;">
+              <div class="quiz-option-letter">A</div>
+              <div>確認しました</div>
+            </div>
+            <div class="quiz-option" style="border: 2px solid #E74C3C; background-color: rgba(231, 76, 60, 0.05);">
+              <div class="quiz-option-letter" style="background-color: #E74C3C; color: #FFF; border-color: #E74C3C;">B</div>
+              <div style="font-weight: 700; color: #E74C3C;">確認いたしました</div>
+              <div style="margin-left: auto; font-size: 12px; font-weight: bold; color: #E74C3C;">正解・あなたの回答</div>
+            </div>
+            <div class="quiz-option" style="opacity: 0.5;">
+              <div class="quiz-option-letter">C</div>
+              <div>ご確認しました</div>
+            </div>
+            <div class="quiz-option" style="opacity: 0.5;">
+              <div class="quiz-option-letter">D</div>
+              <div>確認させていただきました</div>
+            </div>
+          </div>
+          
+          <div class="card" style="margin-top: 24px;">
+            <div style="font-weight: 700; font-size: 16px; margin-bottom: 8px;">解説</div>
+            <div style="font-size: 14px; line-height: 1.6; color: var(--text-sub);">
+              「確認する」の謙譲語は「確認いたす」です。したがって「確認いたしました」が最も適切です。<br><br>
+              「ご（お）〜する」の形にする場合は「ご」をつけますが、「ご確認しました」は不自然な表現となります。また、「確認させていただきました」は過剰敬語となるため、シンプルに「確認いたしました」とするのが基本です。
+            </div>
+          </div>
+
+          <button class="btn" style="width: 100%; margin-top: 24px;">次の問題へ (2/10) →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑥-R ビジネスクイズ 結果 ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑥-R ビジネスクイズ 結果画面</span>
+    <span class="tag-id">クイズ完了後の結果表示</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item active"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / ビジネスクイズ / 敬語 / <span class="current">結果</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-layout">
+
+          <!-- カテゴリタブ(表示のみ) -->
+          <div class="quiz-tabs" style="margin-bottom: 24px;">
+            <div class="quiz-tab active">敬語</div>
+            <div class="quiz-tab">メール</div>
+            <div class="quiz-tab">電話</div>
+            <div class="quiz-tab">報連相</div>
+            <div class="quiz-tab">取引先対応</div>
+            <div class="quiz-tab">お詫び</div>
+            <div class="quiz-tab">依頼</div>
+            <div class="quiz-tab">断り方</div>
+          </div>
+
+          <!-- スコアヒーロー -->
+          <div class="score-hero" style="margin-bottom: 24px;">
+            <div class="score-number">7</div>
+            <div class="score-info">
+              <div style="font-size: 12px; opacity: 0.8;">正解数</div>
+              <div style="font-size: 14px;">10問中 (敬語)</div>
+              <div class="score-rank">正答率 70%</div>
+            </div>
+          </div>
+
+          <!-- 統計グリッド -->
+          <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 24px;">
+            <div class="stat-card">
+              <div class="stat-value" style="color: var(--success);">7</div>
+              <div class="stat-label">正解</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" style="color: var(--danger);">3</div>
+              <div class="stat-label">不正解</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">2:15</div>
+              <div class="stat-label">所要時間</div>
+            </div>
+          </div>
+
+          <!-- カテゴリ別スコア -->
+          <div class="card" style="margin-bottom: 16px;">
+            <div class="card-title">カテゴリ別スコア</div>
+            <div class="score-bars">
+              <div class="score-bar-item">
+                <span>敬語</span>
+                <div class="score-bar-track"><div class="score-bar-fill" style="width: 70%;"></div></div>
+                <span style="text-align: right;">7/10</span>
+              </div>
+              <div class="score-bar-item">
+                <span>メール</span>
+                <div class="score-bar-track"><div class="score-bar-fill" style="width: 80%;"></div></div>
+                <span style="text-align: right;">8/10</span>
+              </div>
+              <div class="score-bar-item">
+                <span>電話</span>
+                <div class="score-bar-track"><div class="score-bar-fill" style="width: 60%;"></div></div>
+                <span style="text-align: right;">6/10</span>
+              </div>
+              <div class="score-bar-item">
+                <span>報連相</span>
+                <div class="score-bar-track"><div class="score-bar-fill" style="width: 90%;"></div></div>
+                <span style="text-align: right;">9/10</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 問題別結果一覧 -->
+          <div class="card" style="margin-bottom: 16px;">
+            <div class="card-title">問題別結果 — 敬語</div>
+
+            <div class="quiz-result-item correct">
+              <div class="quiz-result-num">Q1</div>
+              <div class="quiz-result-body">
+                <div class="quiz-result-q">「ご確認いただけますでしょうか」の返答として最も適切なものは?</div>
+                <div class="quiz-result-a correct-label">✓ 確認いたしました</div>
+              </div>
+              <div class="quiz-result-badge correct-badge">正解</div>
+            </div>
+
+            <div class="quiz-result-item incorrect">
+              <div class="quiz-result-num">Q2</div>
+              <div class="quiz-result-body">
+                <div class="quiz-result-q">上司に予定を伝える際、正しい敬語表現は?</div>
+                <div class="quiz-result-a incorrect-label">✗ あなたの回答: ご参加されます</div>
+                <div class="quiz-result-a correct-label" style="margin-top: 4px;">✓ 正解: 参加いたします</div>
+              </div>
+              <div class="quiz-result-badge incorrect-badge">不正解</div>
+            </div>
+
+            <div class="quiz-result-item incorrect">
+              <div class="quiz-result-num">Q3</div>
+              <div class="quiz-result-body">
+                <div class="quiz-result-q">取引先に資料を送る際の適切な一言は?</div>
+                <div class="quiz-result-a incorrect-label">✗ あなたの回答: 送ります</div>
+                <div class="quiz-result-a correct-label" style="margin-top: 4px;">✓ 正解: お送りいたします</div>
+              </div>
+              <div class="quiz-result-badge incorrect-badge">不正解</div>
+            </div>
+
+            <div style="text-align: center; padding: 8px 0; font-size: 13px; color: var(--text-sub);">… 残り7問(うち5問正解)</div>
+          </div>
+
+          <!-- アドバイス -->
+          <div class="feedback-section" style="margin-bottom: 16px;">
+            <div class="feedback-title feedback-improve">! 改善ポイント</div>
+            <ul class="feedback-list">
+              <li>「ご〜される」は二重敬語になるため避けましょう</li>
+              <li>動詞を謙譲語に変換する(する→いたす、言う→申す)練習をしましょう</li>
+              <li>電話応対の定型フレーズを繰り返し練習すると効果的です</li>
+            </ul>
+          </div>
+          <div class="feedback-section" style="margin-bottom: 24px;">
+            <div class="feedback-title feedback-good">✓ できていること</div>
+            <ul class="feedback-list">
+              <li>報連相に関する敬語は高得点で、基礎が定着しています</li>
+              <li>メール文の構成・結びの言葉は的確に選べています</li>
+            </ul>
+          </div>
+
+          <!-- アクションボタン -->
+          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+            <button class="btn btn-outline" style="flex: 1;" onclick="changeScreen('screen-business')">もう一度挑戦する</button>
+            <button class="btn" style="flex: 1;" onclick="changeScreen('screen-home')">ホームに戻る</button>
+          </div>
+
+          <div class="ad-banner">広告</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑦ 学習記録 ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑦ 学習記録画面</span>
+    <span class="tag-id">統計・グラフ・履歴</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item active"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">学習記録</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-tabs">
+          <div class="quiz-tab active">添削</div>
+          <div class="quiz-tab">語彙クイズ</div>
+          <div class="quiz-tab">ビジネスクイズ</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value">42</div>
+            <div class="stat-label">添削回数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">78</div>
+            <div class="stat-label">平均スコア</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">12</div>
+            <div class="stat-label">連続日数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">85%</div>
+            <div class="stat-label">目標達成率</div>
+          </div>
+        </div>
+
+        <div class="record-layout">
+          <div class="card">
+            <div class="card-title">スコアの推移(直近7日)</div>
+            <div class="chart-placeholder">
+              <div class="chart-bar" style="height: 40%;"></div>
+              <div class="chart-bar" style="height: 55%;"></div>
+              <div class="chart-bar" style="height: 50%;"></div>
+              <div class="chart-bar" style="height: 65%;"></div>
+              <div class="chart-bar" style="height: 70%;"></div>
+              <div class="chart-bar" style="height: 78%;"></div>
+              <div class="chart-bar" style="height: 85%;"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">最近の添削履歴</div>
+            <div class="history-item">
+              <div>
+                <div class="history-title">自己PR(300字)</div>
+                <div class="history-meta">2026/10/15</div>
+              </div>
+              <div class="history-score">85</div>
+            </div>
+            <div class="history-item">
+              <div>
+                <div class="history-title">ガクチカ(500字)</div>
+                <div class="history-meta">2026/10/13</div>
+              </div>
+              <div class="history-score">72</div>
+            </div>
+            <div class="history-item">
+              <div>
+                <div class="history-title">志望動機(400字)</div>
+                <div class="history-meta">2026/10/10</div>
+              </div>
+              <div class="history-score">78</div>
+            </div>
+            <div style="text-align: center; margin-top: 12px;">
+              <a href="#" style="font-size: 13px; color: var(--primary); font-weight: 600;">もっと見る →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑧ マイページ ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑧ マイページ画面</span>
+    <span class="tag-id">プロフィール・チケット・設定</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item active"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">マイページ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="profile-layout">
+          <!-- 左:プロフィール -->
+          <div class="card profile-card">
+            <div class="avatar-large">柴</div>
+            <div style="font-weight: 700; font-size: 18px; margin-bottom: 4px;">柴谷 泰雅</div>
+            <div style="font-size: 13px; color: var(--text-sub); margin-bottom: 16px;">無料プラン</div>
+            <button class="btn btn-outline" style="width: 100%;" onclick="changeScreen('screen-profile-edit')">プロフィール編集</button>
+          </div>
+
+          <!-- 右:メニュー -->
+          <div>
+            <div class="ticket-card">
+              <div style="font-weight: 700; font-size: 16px; margin-bottom: 4px;">添削チケット</div>
+              <div style="font-size: 13px; color: var(--text-sub); margin-bottom: 16px;">30日間で100回まで添削できる買い切りプラン</div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 28px; font-weight: 700; color: var(--primary);">¥500</div>
+                <button class="btn">購入する →</button>
+              </div>
+            </div>
+
+            <ul class="menu-list">
+              <li><span>購入履歴</span><span style="color: var(--text-sub);">›</span></li>
+              <li><span>通知設定</span><span style="color: var(--text-sub);">›</span></li>
+              <!-- <li><span>パスワード変更</span><span style="color: var(--text-sub);">›</span></li> -->
+              <li><a href="利用規約_プライバシーポリシー_作文ナビ.html"><span>利用規約</span></a><span style="color: var(--text-sub);">›</span></li>
+              <li><span>プライバシーポリシー</span><span style="color: var(--text-sub);">›</span></li>
+              <li style="color: var(--danger);"><span>ログアウト</span><span>›</span></li>
+            </ul>
+
+            <div class="ad-banner" style="margin-top: 16px;">広告</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑨ プロフィール編集 ============ -->
+<div class="screen-wrap" id="screen-profile-edit">
+  <div class="screen-tag">
+    <span>⑨ プロフィール編集画面</span>
+    <span class="tag-id">名前・誕生日・アイコン変更</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item active"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span style="cursor:pointer; color:var(--text-sub);" onclick="changeScreen('screen-mypage')">マイページ</span> / <span class="current">プロフィール編集</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar" id="peTopbarAvatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div style="max-width:680px; margin:0 auto;">
+
+          <!-- 戻るリンク -->
+          <div style="margin-bottom:24px;">
+            <button class="btn btn-outline" style="font-size:13px; padding:8px 16px;" onclick="changeScreen('screen-mypage')">← マイページに戻る</button>
+          </div>
+          <div style="font-size:22px; font-weight:700; margin-bottom:24px;">プロフィール編集</div>
+
+          <!-- アイコン編集 -->
+          <div class="card">
+            <div class="card-title">アイコン画像</div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:12px; padding:32px; background:var(--primary-soft); border-radius:16px;">
+              <div id="peAvatarWrap" onclick="document.getElementById('peFileInput').click()"
+                   style="width:120px; height:120px; background:var(--primary); color:white; border-radius:50%;
+                          display:flex; align-items:center; justify-content:center; font-size:44px; font-weight:700;
+                          position:relative; overflow:hidden; cursor:pointer;
+                          border:4px solid white; box-shadow:0 4px 16px rgba(26,20,100,0.2);">
+                <span id="peInitial">柴</span>
+                <img id="peAvatarImg" src="" alt="" style="display:none; position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.45); display:flex; flex-direction:column;
+                            align-items:center; justify-content:center; opacity:0; transition:opacity .2s; border-radius:50%;
+                            font-size:12px; color:white; gap:4px;"
+                     onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0">
+                  <span style="font-size:24px;">📷</span><span>変更する</span>
+                </div>
+              </div>
+              <div style="font-size:13px; color:var(--text-sub);">クリックして写真を選択（JPG / PNG）</div>
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-outline" style="padding:8px 16px; font-size:13px;"
+                        onclick="document.getElementById('peFileInput').click()">写真を選択</button>
+                <button class="btn" id="peRemoveBtn"
+                        style="padding:8px 16px; font-size:13px; display:none; background:white; color:var(--danger); border:2px solid var(--danger);"
+                        onclick="peRemovePhoto()">写真を削除</button>
+              </div>
+              <input type="file" id="peFileInput" accept="image/*" style="display:none;" onchange="pePreviewAvatar(event)">
+            </div>
+          </div>
+
+          <!-- 基本情報 -->
+          <div class="card">
+            <div class="card-title">基本情報</div>
+
+            <div>
+              <label class="label" for="peNickname">ニックネーム</label>
+              <input type="text" id="peNickname" class="input-field" value="柴谷 泰雅" placeholder="ニックネームを入力">
+            </div>
+
+            <label class="label">誕生日</label>
+            <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:8px; margin-bottom:4px;">
+              <span style="font-size:11px; color:var(--text-sub); font-weight:600;">年</span>
+              <span style="font-size:11px; color:var(--text-sub); font-weight:600;">月</span>
+              <span style="font-size:11px; color:var(--text-sub); font-weight:600;">日</span>
+            </div>
+            <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:8px; margin-bottom:16px;">
+              <select id="peBirthYear" style="padding:12px 14px; border:1px solid var(--border); border-radius:8px; font-size:14px; font-family:inherit; background:white; cursor:pointer;"></select>
+              <select id="peBirthMonth" style="padding:12px 14px; border:1px solid var(--border); border-radius:8px; font-size:14px; font-family:inherit; background:white; cursor:pointer;"></select>
+              <select id="peBirthDay" style="padding:12px 14px; border:1px solid var(--border); border-radius:8px; font-size:14px; font-family:inherit; background:white; cursor:pointer;"></select>
+            </div>
+
+            <div style="display:flex; gap:12px; justify-content:flex-end; padding-top:16px; border-top:1px solid var(--border-light);">
+              <button class="btn btn-outline" onclick="changeScreen('screen-mypage')">キャンセル</button>
+              <button class="btn" onclick="peSave()">保存する</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="peSaveToast" style="display:none; position:fixed; top:24px; left:50%; transform:translateX(-50%);
+     background:var(--success); color:white; padding:12px 28px; border-radius:24px;
+     font-size:14px; font-weight:600; box-shadow:0 4px 20px rgba(0,0,0,0.18); z-index:999; white-space:nowrap;">
+  プロフィールを保存しました
+</div>
+
+<script>
+  // 誕生日セレクト生成
+  (function() {
+    const yearSel  = document.getElementById('peBirthYear');
+    const monthSel = document.getElementById('peBirthMonth');
+    const daySel   = document.getElementById('peBirthDay');
+    const now = new Date().getFullYear();
+
+    yearSel.innerHTML = '<option value="">年を選択</option>';
+    for (let y = now; y >= 1950; y--) {
+      const o = document.createElement('option');
+      o.value = y; o.textContent = y + '年';
+      yearSel.appendChild(o);
+    }
+    yearSel.value = '2005';
+
+    monthSel.innerHTML = '<option value="">月</option>';
+    for (let m = 1; m <= 12; m++) {
+      const o = document.createElement('option');
+      o.value = m; o.textContent = m + '月';
+      monthSel.appendChild(o);
+    }
+    monthSel.value = '4';
+
+    function updateDays() {
+      const y = parseInt(yearSel.value) || 2000;
+      const m = parseInt(monthSel.value) || 1;
+      const max = new Date(y, m, 0).getDate();
+      const prev = daySel.value;
+      daySel.innerHTML = '<option value="">日</option>';
+      for (let d = 1; d <= max; d++) {
+        const o = document.createElement('option');
+        o.value = d; o.textContent = d + '日';
+        daySel.appendChild(o);
+      }
+      if (prev && parseInt(prev) <= max) daySel.value = prev;
+    }
+    yearSel.addEventListener('change', updateDays);
+    monthSel.addEventListener('change', updateDays);
+    updateDays();
+    daySel.value = '15';
+  })();
+
+  // 選択中の画像DataURL（保存時に全体反映するために保持）
+  let peCurrentImageUrl = null;
+
+  function pePreviewAvatar(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      peCurrentImageUrl = e.target.result;
+      const img = document.getElementById('peAvatarImg');
+      img.src = peCurrentImageUrl;
+      img.style.display = 'block';
+      document.getElementById('peInitial').style.display = 'none';
+      document.getElementById('peRemoveBtn').style.display = 'inline-block';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function peRemovePhoto() {
+    peCurrentImageUrl = null;
+    const img = document.getElementById('peAvatarImg');
+    img.style.display = 'none';
+    img.src = '';
+    document.getElementById('peInitial').style.display = 'flex';
+    document.getElementById('peRemoveBtn').style.display = 'none';
+    document.getElementById('peFileInput').value = '';
+  }
+
+  // 全アバター要素にニックネームと画像を反映
+  function peApplyToAllAvatars(nickname, imageUrl) {
+    const initial = nickname ? nickname[0] : '?';
+
+    // トップバーアバター（全画面）
+    document.querySelectorAll('.topbar-avatar').forEach(el => {
+      if (imageUrl) {
+        el.textContent = '';
+        el.style.backgroundImage = 'url(' + imageUrl + ')';
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+      } else {
+        el.textContent = initial;
+        el.style.backgroundImage = '';
+      }
+    });
+
+    // マイページの大アバター
+    const bigAvatar = document.querySelector('.avatar-large');
+    if (bigAvatar) {
+      if (imageUrl) {
+        bigAvatar.textContent = '';
+        bigAvatar.style.backgroundImage = 'url(' + imageUrl + ')';
+        bigAvatar.style.backgroundSize = 'cover';
+        bigAvatar.style.backgroundPosition = 'center';
+      } else {
+        bigAvatar.textContent = initial;
+        bigAvatar.style.backgroundImage = '';
+      }
+    }
+
+    // マイページのニックネーム表示
+    const nameDisplay = document.querySelector('#screen-mypage .profile-card div[style*="font-weight: 700"]');
+    if (nameDisplay) nameDisplay.textContent = nickname;
+
+    // プロフィール編集画面のアバタープレビューのイニシャル
+    document.getElementById('peInitial').textContent = initial;
+  }
+
+  function peSave() {
+    const nickname = document.getElementById('peNickname').value.trim();
+    peApplyToAllAvatars(nickname, peCurrentImageUrl);
+    const toast = document.getElementById('peSaveToast');
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 2500);
+  }
+</script>
+
+  <script src="script.js"></script>
+</body>
+</html>

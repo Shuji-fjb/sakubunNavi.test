@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>プロフィール編集 - 作文ナビ</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .profile-edit-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .avatar-edit-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    padding: 32px;
+    background: var(--primary-soft);
+    border-radius: 16px;
+  }
+
+  .avatar-preview {
+    width: 120px;
+    height: 120px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 4px solid white;
+    box-shadow: 0 4px 16px rgba(26, 20, 100, 0.2);
+  }
+
+  .avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+  }
+
+  .avatar-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: 50%;
+    font-size: 12px;
+    color: white;
+    gap: 4px;
+  }
+
+  .avatar-preview:hover .avatar-overlay {
+    opacity: 1;
+  }
+
+  .avatar-camera-icon {
+    font-size: 24px;
+  }
+
+  .avatar-edit-hint {
+    font-size: 13px;
+    color: var(--text-sub);
+  }
+
+  #avatar-file-input {
+    display: none;
+  }
+
+  .avatar-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-sm {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .btn-danger {
+    background: white;
+    color: var(--danger);
+    border: 2px solid var(--danger);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .input-field:focus,
+  .select-field:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(26, 20, 100, 0.1);
+  }
+
+  .select-field {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    font-family: inherit;
+    background: white;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+
+  .birthday-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .birthday-header span {
+    font-size: 11px;
+    color: var(--text-sub);
+    font-weight: 600;
+  }
+
+  .birthday-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .birthday-row .select-field {
+    margin-bottom: 0;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-light);
+    margin-top: 8px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 24px;
+  }
+
+  .back-link:hover {
+    opacity: 0.75;
+  }
+
+  .page-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .success-toast {
+    display: none;
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--success);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    z-index: 999;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<div class="success-toast" id="successToast">プロフィールを保存しました</div>
+
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑨ プロフィール編集画面</span>
+    <span class="tag-id">名前・誕生日・アイコン変更</span>
+  </div>
+  <div class="app">
+
+    <!-- サイドバー -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item active"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+
+    <!-- メインエリア -->
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">
+          ホーム /
+          <a href="index.html" style="color: inherit; text-decoration: none;">マイページ</a>
+          / <span class="current">プロフィール編集</span>
+        </div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar" id="topbarAvatar">柴</div>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="profile-edit-wrap">
+          <a href="index.html" class="back-link">← マイページに戻る</a>
+          <div class="page-title">プロフィール編集</div>
+
+          <!-- アイコン編集 -->
+          <div class="card">
+            <div class="card-title">アイコン画像</div>
+            <div class="avatar-edit-area">
+              <div class="avatar-preview" id="avatarPreview"
+                   onclick="document.getElementById('avatar-file-input').click()">
+                <span id="avatarInitial">柴</span>
+                <img id="avatarImg" src="" alt="アイコン">
+                <div class="avatar-overlay">
+                  <span class="avatar-camera-icon">📷</span>
+                  <span>変更する</span>
+                </div>
+              </div>
+              <div class="avatar-edit-hint">クリックして写真を選択（JPG / PNG）</div>
+              <div class="avatar-actions">
+                <button class="btn btn-outline btn-sm"
+                        onclick="document.getElementById('avatar-file-input').click()">
+                  写真を選択
+                </button>
+                <button class="btn btn-danger btn-sm" id="removePhotoBtn"
+                        onclick="removePhoto()" style="display:none;">
+                  写真を削除
+                </button>
+              </div>
+              <input type="file" id="avatar-file-input" accept="image/*"
+                     onchange="previewAvatar(event)">
+            </div>
+          </div>
+
+          <!-- 基本情報 -->
+          <div class="card">
+            <div class="card-title">基本情報</div>
+
+            <!-- 名前 -->
+            <div class="form-row">
+              <div>
+                <label class="label" for="lastName">姓</label>
+                <input type="text" id="lastName" class="input-field"
+                       value="柴谷" placeholder="姓">
+              </div>
+              <div>
+                <label class="label" for="firstName">名</label>
+                <input type="text" id="firstName" class="input-field"
+                       value="泰雅" placeholder="名">
+              </div>
+            </div>
+
+            <!-- ふりがな -->
+            <div class="form-row">
+              <div>
+                <label class="label" for="lastNameKana">姓（ふりがな）</label>
+                <input type="text" id="lastNameKana" class="input-field"
+                       value="しばたに" placeholder="せい">
+              </div>
+              <div>
+                <label class="label" for="firstNameKana">名（ふりがな）</label>
+                <input type="text" id="firstNameKana" class="input-field"
+                       value="たいが" placeholder="めい">
+              </div>
+            </div>
+
+            <!-- 誕生日 -->
+            <label class="label">誕生日</label>
+            <div class="birthday-header">
+              <span>年</span><span>月</span><span>日</span>
+            </div>
+            <div class="birthday-row">
+              <select class="select-field" id="birthYear"></select>
+              <select class="select-field" id="birthMonth"></select>
+              <select class="select-field" id="birthDay"></select>
+            </div>
+
+            <div class="form-actions">
+              <a href="index.html" class="btn btn-outline">キャンセル</a>
+              <button class="btn" onclick="saveProfile()">保存する</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ---- 誕生日セレクトボックス生成 ----
+  const yearSel  = document.getElementById('birthYear');
+  const monthSel = document.getElementById('birthMonth');
+  const daySel   = document.getElementById('birthDay');
+
+  const currentYear = new Date().getFullYear();
+  yearSel.innerHTML = '<option value="">年を選択</option>';
+  for (let y = currentYear; y >= 1950; y--) {
+    const o = document.createElement('option');
+    o.value = y; o.textContent = y + '年';
+    yearSel.appendChild(o);
+  }
+  yearSel.value = '2005';
+
+  monthSel.innerHTML = '<option value="">月</option>';
+  for (let m = 1; m <= 12; m++) {
+    const o = document.createElement('option');
+    o.value = m; o.textContent = m + '月';
+    monthSel.appendChild(o);
+  }
+  monthSel.value = '4';
+
+  function updateDays() {
+    const y = parseInt(yearSel.value) || 2000;
+    const m = parseInt(monthSel.value) || 1;
+    const max = new Date(y, m, 0).getDate();
+    const prev = daySel.value;
+    daySel.innerHTML = '<option value="">日</option>';
+    for (let d = 1; d <= max; d++) {
+      const o = document.createElement('option');
+      o.value = d; o.textContent = d + '日';
+      daySel.appendChild(o);
+    }
+    if (prev && parseInt(prev) <= max) daySel.value = prev;
+  }
+
+  yearSel.addEventListener('change', updateDays);
+  monthSel.addEventListener('change', updateDays);
+  updateDays();
+  daySel.value = '15';
+
+  // ---- アバター写真プレビュー ----
+  function previewAvatar(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.getElementById('avatarImg');
+      img.src = e.target.result;
+      img.style.display = 'block';
+      document.getElementById('avatarInitial').style.display = 'none';
+      document.getElementById('removePhotoBtn').style.display = 'inline-flex';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removePhoto() {
+    const img = document.getElementById('avatarImg');
+    img.style.display = 'none';
+    img.src = '';
+    document.getElementById('avatarInitial').style.display = 'flex';
+    document.getElementById('removePhotoBtn').style.display = 'none';
+    document.getElementById('avatar-file-input').value = '';
+  }
+
+  // ---- 保存 ----
+  function saveProfile() {
+    const last = document.getElementById('lastName').value.trim();
+    if (last) {
+      document.getElementById('avatarInitial').textContent = last[0];
+      document.getElementById('topbarAvatar').textContent  = last[0];
+    }
+    const toast = document.getElementById('successToast');
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 2500);
+  }
+</script>
+</body>
+</html>

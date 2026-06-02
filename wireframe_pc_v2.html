@@ -1,0 +1,2268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>作文ナビ PC版 ワイヤーフレーム</title>
+<style>
+  :root {
+    --primary: #1A1464;
+    --primary-light: #3D3787;
+    --primary-soft: #E8E6F2;
+    --accent: #FFD93D;
+    --bg: #F5F5F7;
+    --card-bg: #FFFFFF;
+    --text: #1A1A1A;
+    --text-sub: #666;
+    --border: #D1D1D8;
+    --border-light: #E8E8ED;
+    --success: #00A86B;
+    --warning: #FF8C00;
+    --danger: #E94560;
+
+    --sidebar-w: 240px;
+    --header-h: 64px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 32px 24px;
+  }
+
+  h1.doc-title {
+    font-size: 32px;
+    color: var(--primary);
+    margin-bottom: 8px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .doc-subtitle {
+    text-align: center;
+    color: var(--text-sub);
+    margin-bottom: 32px;
+    font-size: 14px;
+  }
+
+  .legend {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    margin: 0 auto 40px;
+    max-width: 1400px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-light);
+  }
+
+  .legend h3 {
+    color: var(--primary);
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+
+  .legend p {
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-bottom: 4px;
+  }
+
+  /* 各画面のフレーム */
+  .screen-wrap {
+    max-width: 1400px;
+    margin: 0 auto 48px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(26, 20, 100, 0.08);
+    border: 1px solid var(--border-light);
+  }
+
+  .screen-tag {
+    background: var(--primary);
+    color: white;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .screen-tag .tag-id {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+
+  /* ============ アプリ本体 ============ */
+  .app {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    min-height: 720px;
+    background: var(--bg);
+  }
+
+  /* サイドバー */
+  .sidebar {
+    background: white;
+    border-right: 1px solid var(--border-light);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-logo {
+    padding: 0 24px 20px;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 16px;
+  }
+
+  .sidebar-logo .logo-text {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 22px;
+    letter-spacing: -0.02em;
+  }
+
+  .sidebar-logo .logo-sub {
+    font-size: 11px;
+    color: var(--text-sub);
+    margin-top: 2px;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 0 12px;
+  }
+
+  .sidebar-section-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-sub);
+    padding: 12px 12px 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-item {
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .nav-item:hover {
+    background: var(--primary-soft);
+  }
+
+  .nav-item.active {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+  }
+
+  .nav-icon {
+    width: 20px;
+    height: 20px;
+    background: currentColor;
+    opacity: 0.8;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border-light);
+    font-size: 12px;
+    color: var(--text-sub);
+  }
+
+  /* メイン */
+  .main {
+    overflow: hidden;
+  }
+
+  .topbar {
+    height: var(--header-h);
+    background: white;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+  }
+
+  .breadcrumb {
+    font-size: 14px;
+    color: var(--text-sub);
+  }
+
+  .breadcrumb .current {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .topbar-streak {
+    background: var(--accent);
+    color: var(--primary);
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .topbar-avatar {
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .main-content {
+    padding: 32px;
+    overflow-y: auto;
+  }
+
+  /* 共通パーツ */
+  .card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .label {
+    font-size: 12px;
+    color: var(--text-sub);
+    margin-bottom: 6px;
+    display: block;
+    font-weight: 600;
+  }
+
+  .input-field, .textarea-field {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    font-family: inherit;
+  }
+
+  .textarea-field {
+    min-height: 280px;
+    resize: vertical;
+  }
+
+  .char-counter {
+    text-align: right;
+    font-size: 12px;
+    color: var(--text-sub);
+    margin-top: -12px;
+    margin-bottom: 16px;
+  }
+
+  .btn {
+    padding: 12px 28px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .btn-outline {
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+  }
+
+  .btn-large {
+    padding: 14px 36px;
+    font-size: 15px;
+  }
+
+  .ad-banner {
+    background: repeating-linear-gradient(
+      45deg,
+      #f0f0f0,
+      #f0f0f0 10px,
+      #fafafa 10px,
+      #fafafa 20px
+    );
+    border: 1px dashed #999;
+    padding: 16px;
+    text-align: center;
+    color: #999;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+
+  /* ============ ホーム画面 ============ */
+  .hero-card {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    padding: 32px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .hero-card h2 {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .hero-card p {
+    opacity: 0.9;
+    font-size: 14px;
+  }
+
+  .hero-card-btn {
+    background: var(--accent);
+    color: var(--primary);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .feature-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 24px 20px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .feature-card:hover {
+    border-color: var(--primary);
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--primary-soft);
+    border-radius: 12px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .feature-name {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .feature-desc {
+    font-size: 12px;
+    color: var(--text-sub);
+  }
+
+  .home-bottom-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+  }
+
+  /* ============ お題選択 ============ */
+  .topic-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .topic-option-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .topic-option-card.free {
+    background: linear-gradient(135deg, #FFF8E0, #FFFCEC);
+    border-color: var(--accent);
+  }
+
+  .category-list {
+    display: grid;
+    gap: 8px;
+  }
+
+  .category-item {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .category-item:hover { border-color: var(--primary); }
+
+  .category-count {
+    font-size: 12px;
+    color: var(--text-sub);
+    background: var(--bg);
+    padding: 2px 10px;
+    border-radius: 10px;
+  }
+
+  /* ============ AI作文添削画面 ============ */
+  .essay-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .char-options {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .char-option {
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+    background: white;
+  }
+
+  .char-option.selected {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  .topic-display {
+    background: var(--primary-soft);
+    border-left: 4px solid var(--primary);
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  /* 添削結果 */
+  .score-hero {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .score-number {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .score-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .score-rank {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 13px;
+    width: fit-content;
+  }
+
+  .score-bars {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .score-bar-item {
+    display: grid;
+    grid-template-columns: 110px 1fr 48px;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .score-bar-track {
+    background: var(--bg);
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .score-bar-fill {
+    background: var(--primary);
+    height: 100%;
+    border-radius: 5px;
+  }
+
+  .feedback-section {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+  }
+
+  .feedback-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+
+  .feedback-good { color: var(--success); }
+  .feedback-improve { color: var(--warning); }
+
+  .feedback-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .feedback-list li {
+    padding: 4px 0 4px 12px;
+    font-size: 13px;
+    position: relative;
+  }
+
+  .feedback-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+  }
+
+  /* ============ クイズ ============ */
+  .quiz-layout {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .progress-bar {
+    background: var(--border-light);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .progress-fill {
+    background: var(--primary);
+    height: 100%;
+  }
+
+  .quiz-question {
+    background: var(--primary-soft);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 24px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .quiz-option {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+  }
+
+  .quiz-option:hover { border-color: var(--primary); }
+
+  .quiz-option-letter {
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .quiz-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .quiz-tab {
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .quiz-tab.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  /* ============ 学習記録 ============ */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .stat-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-sub);
+  }
+
+  .record-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+  }
+
+  .chart-placeholder {
+    background: var(--bg);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    height: 240px;
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    padding: 16px;
+  }
+
+  .chart-bar {
+    width: 32px;
+    background: linear-gradient(to top, var(--primary), var(--primary-light));
+    border-radius: 4px 4px 0 0;
+  }
+
+  .history-item {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .history-title { font-size: 13px; font-weight: 600; }
+  .history-meta { font-size: 11px; color: var(--text-sub); margin-top: 2px; }
+  .history-score {
+    background: var(--primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* ============ マイページ ============ */
+  .profile-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 24px;
+  }
+
+  .profile-card {
+    text-align: center;
+    padding: 32px 24px;
+  }
+
+  .avatar-large {
+    width: 96px;
+    height: 96px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  .ticket-card {
+    background: linear-gradient(135deg, #FFF8E0, #FFFCEC);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .menu-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .menu-list li {
+    padding: 14px 16px;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .menu-list li:hover { border-color: var(--primary); }
+
+  /* ============ ログイン ============ */
+  .login-screen {
+    min-height: 720px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-soft), white);
+  }
+
+  .login-box {
+    width: 420px;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(26, 20, 100, 0.1);
+  }
+
+  .login-logo {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .login-logo .logo-name {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+
+  .login-logo .logo-tag {
+    font-size: 12px;
+    color: var(--text-sub);
+  }
+
+  .login-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 24px;
+  }
+
+  .login-tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-sub);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+
+  .login-tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+  }
+
+  .badge-required {
+    background: var(--danger);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    margin-left: 6px;
+  }
+
+  /* Googleログインボタン(Google公式デザイン準拠) */
+  .google-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 24px;
+    background: white;
+    color: #1f1f1f;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Roboto', 'Hiragino Sans', sans-serif;
+    cursor: pointer;
+    transition: box-shadow 0.2s, background 0.2s;
+  }
+
+  .google-login-btn:hover {
+    box-shadow: 0 1px 3px rgba(60, 64, 67, 0.15);
+    background: #f8f9fa;
+  }
+
+  .google-login-btn:active {
+    background: #f1f3f4;
+  }
+
+  .google-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  /* ============ サブ画面用 ============ */
+
+  /* トグルスイッチ(通知設定) */
+  .toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-light);
+    gap: 24px;
+  }
+  .toggle-row:last-child { border-bottom: none; }
+
+  .toggle-info { flex: 1; }
+  .toggle-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .toggle-desc { font-size: 12px; color: var(--text-sub); }
+
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    border-radius: 26px;
+    transition: 0.3s;
+  }
+  .toggle-slider:before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  .toggle-switch input:checked + .toggle-slider {
+    background-color: var(--primary);
+  }
+  .toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(22px);
+  }
+
+  /* セレクトボックス */
+  .select-field {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    background: white;
+    cursor: pointer;
+    min-width: 140px;
+  }
+
+  /* 利用規約・プライバシーポリシー */
+  .terms-card { line-height: 1.8; }
+  .terms-h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 20px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--primary-soft);
+  }
+  .terms-h3:first-of-type { margin-top: 0; }
+  .terms-p {
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .terms-list {
+    list-style: disc;
+    padding-left: 24px;
+    margin-bottom: 12px;
+  }
+  .terms-list li {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  /* モーダル */
+  .modal-overlay {
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .modal-box {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    width: 480px;
+    max-width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  .modal-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .modal-desc {
+    font-size: 14px;
+    color: var(--text-sub);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .modal-danger { border-top: 4px solid var(--danger); }
+
+  .delete-list {
+    list-style: none;
+    padding: 0;
+    background: #FFF5F5;
+    border: 1px solid #FFE5E5;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: left;
+    margin-bottom: 0;
+  }
+  .delete-list li {
+    font-size: 13px;
+    padding: 4px 0 4px 24px;
+    position: relative;
+    color: var(--text);
+  }
+  .delete-list li:before {
+    content: "✕";
+    position: absolute;
+    left: 0;
+    color: var(--danger);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<h1 class="doc-title">作文ナビ — PC版ワイヤーフレーム</h1>
+<p class="doc-subtitle">2026年度 卒業研究 / Web (Desktop)</p>
+
+<div class="legend">
+  <h3>このワイヤーフレームについて</h3>
+  <p>・骨組み(レイアウト構造)に集中した設計。UIの装飾は最小限</p>
+  <p>・PC版の典型構成:左サイドバー(ナビ) + 上部バー(パンくず・ユーザー情報) + メインコンテンツ</p>
+  <p>・ブレークポイント想定:1280px以上を主な対象</p>
+  <p>・認証方法:<strong>Google OAuth 2.0</strong>(メール+パスワード認証は実装しない)</p>
+  <p>・ブランドカラー:ネイビー #1A1464 + アクセント #FFD93D</p>
+</div>
+
+<!-- ============ ① ログイン ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>① ログイン画面</span>
+    <span class="tag-id">起動時・未認証</span>
+  </div>
+  <div class="login-screen">
+    <div class="login-box">
+      <div class="login-logo">
+        <div class="logo-name">作文ナビ</div>
+        <div class="logo-tag">AIに頼らず、自分で書く力を取り戻す</div>
+      </div>
+
+      <div style="text-align: center; padding: 24px 0 32px;">
+        <div style="font-size: 13px; color: var(--text-sub); margin-bottom: 4px;">アカウントをお持ちの方も</div>
+        <div style="font-size: 13px; color: var(--text-sub);">初めての方もこちらから</div>
+      </div>
+
+      <!-- Google ログインボタン(Google公式デザイン準拠) -->
+      <button class="google-login-btn" style="width: 100%;">
+        <span class="google-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+            <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
+            <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
+            <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/>
+            <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+          </svg>
+        </span>
+        <span>Googleでログイン</span>
+      </button>
+
+      <div style="text-align: center; margin-top: 16px; font-size: 11px; color: var(--text-sub); line-height: 1.6;">
+        初めての方も同じボタンで<br>自動的にアカウントが作成されます
+      </div>
+
+      <div style="border-top: 1px solid var(--border-light); margin-top: 32px; padding-top: 16px; text-align: center; font-size: 11px; color: var(--text-sub);">
+        ログインすることで<br>
+        <a href="#" style="color: var(--primary);">利用規約</a>
+        および
+        <a href="#" style="color: var(--primary);">プライバシーポリシー</a>
+        に同意したものとみなされます
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ② ホーム ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>② ホーム画面</span>
+    <span class="tag-id">ログイン後のメイン画面</span>
+  </div>
+  <div class="app">
+    <!-- サイドバー -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item active"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <!-- メイン -->
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">ダッシュボード</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="hero-card">
+          <div>
+            <h2>今日の一問</h2>
+            <p>あなたの強みを300字で書いてみましょう</p>
+          </div>
+          <button class="hero-card-btn">今すぐ書く →</button>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">✎</div>
+            <div class="feature-name">AI作文添削</div>
+            <div class="feature-desc">4軸スコアで採点</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">語</div>
+            <div class="feature-name">語彙クイズ</div>
+            <div class="feature-desc">4択で語彙力アップ</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">B</div>
+            <div class="feature-name">ビジネスクイズ</div>
+            <div class="feature-desc">敬語・メール対応</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <div class="feature-name">学習記録</div>
+            <div class="feature-desc">成長を見える化</div>
+          </div>
+        </div>
+
+        <div class="home-bottom-grid">
+          <div class="card">
+            <div class="card-title">最近の添削結果</div>
+            <div class="history-item">
+              <div>
+                <div class="history-title">自己PR(300字)</div>
+                <div class="history-meta">2026/10/15</div>
+              </div>
+              <div class="history-score">85</div>
+            </div>
+            <div class="history-item">
+              <div>
+                <div class="history-title">ガクチカ(500字)</div>
+                <div class="history-meta">2026/10/13</div>
+              </div>
+              <div class="history-score">72</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">広告枠</div>
+            <div class="ad-banner">広告</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ③ お題選択 ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>③ お題選択画面</span>
+    <span class="tag-id">AI作文添削のスタート</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item active"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / AI作文添削 / <span class="current">お題選択</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">どうやって練習しますか?</div>
+        <div class="topic-layout">
+          <div class="topic-option-card free">
+            <div class="card-title">📝 自分でお題を入力</div>
+            <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 16px;">
+              実際の企業ES設問をそのまま貼り付けて練習できます
+            </p>
+            <label class="label">お題(200字以内)</label>
+            <textarea class="textarea-field" style="min-height: 120px;" placeholder="例:学生時代に最も困難だった経験について、どう乗り越えたかを400字以内で記述してください"></textarea>
+            <button class="btn" style="width: 100%;">この内容で次へ →</button>
+          </div>
+          <div class="topic-option-card">
+            <div class="card-title">📚 お題ライブラリから選ぶ</div>
+            <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 16px;">
+              定番のお題を選んで練習できます
+            </p>
+            <div class="category-list">
+              <div class="category-item"><span>自己PR</span><span class="category-count">20問</span></div>
+              <div class="category-item"><span>ガクチカ</span><span class="category-count">20問</span></div>
+              <div class="category-item"><span>志望動機</span><span class="category-count">20問</span></div>
+              <div class="category-item"><span>長所・短所</span><span class="category-count">20問</span></div>
+              <div class="category-item"><span>小論文</span><span class="category-count">15問</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ④ AI作文添削(入力+結果) ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>④ AI作文添削画面</span>
+    <span class="tag-id">入力 + 添削結果(2カラム)</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item active"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / AI作文添削 / <span class="current">自己PR添削</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="essay-layout">
+          <!-- 左:入力 -->
+          <div>
+            <div class="card">
+              <div class="card-title">作文を書く</div>
+              <div class="topic-display">お題:あなたの強みを教えてください</div>
+
+              <label class="label">目標文字数</label>
+              <div class="char-options">
+                <div class="char-option">200字</div>
+                <div class="char-option selected">300字</div>
+                <div class="char-option">400字</div>
+                <div class="char-option">500字</div>
+                <div class="char-option">800字</div>
+                <div class="char-option">自由</div>
+              </div>
+
+              <label class="label">あなたの文章</label>
+              <textarea class="textarea-field" placeholder="自分の言葉で書いてみましょう..."></textarea>
+              <div class="char-counter">234字 / 300字</div>
+
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-outline" style="flex: 1;">もう一度書く</button>
+                <button class="btn" style="flex: 2;">添削する</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右:結果 -->
+          <div>
+            <div class="card">
+              <div class="card-title">添削結果</div>
+
+              <div class="score-hero">
+                <div class="score-number">78</div>
+                <div class="score-info">
+                  <div style="font-size: 12px; opacity: 0.8;">総合スコア</div>
+                  <div style="font-size: 14px;">100点満点中</div>
+                  <div class="score-rank">B評価</div>
+                </div>
+              </div>
+
+              <div class="score-bars">
+                <div class="score-bar-item">
+                  <span>論理性</span>
+                  <div class="score-bar-track"><div class="score-bar-fill" style="width: 80%;"></div></div>
+                  <span style="text-align: right;">20/25</span>
+                </div>
+                <div class="score-bar-item">
+                  <span>構成</span>
+                  <div class="score-bar-track"><div class="score-bar-fill" style="width: 72%;"></div></div>
+                  <span style="text-align: right;">18/25</span>
+                </div>
+                <div class="score-bar-item">
+                  <span>語彙・表現</span>
+                  <div class="score-bar-track"><div class="score-bar-fill" style="width: 88%;"></div></div>
+                  <span style="text-align: right;">22/25</span>
+                </div>
+                <div class="score-bar-item">
+                  <span>内容の深さ</span>
+                  <div class="score-bar-track"><div class="score-bar-fill" style="width: 72%;"></div></div>
+                  <span style="text-align: right;">18/25</span>
+                </div>
+              </div>
+
+              <div style="font-size: 12px; color: var(--text-sub); margin-bottom: 12px;">
+                文字数:234字 / 目標300字(達成率78%)
+              </div>
+
+              <div class="feedback-section">
+                <div class="feedback-title feedback-good">✓ 良い点</div>
+                <ul class="feedback-list">
+                  <li>強みが明確に述べられている</li>
+                  <li>エピソードが具体的</li>
+                </ul>
+              </div>
+
+              <div class="feedback-section">
+                <div class="feedback-title feedback-improve">! 改善点</div>
+                <ul class="feedback-list">
+                  <li>仕事での活かし方が弱い</li>
+                  <li>結論の繰り返しがある</li>
+                </ul>
+              </div>
+
+              <button class="btn btn-outline" style="width: 100%; margin-top: 12px;">書き直し提案を見る</button>
+            </div>
+            <div class="ad-banner">広告</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑤ 語彙クイズ ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑤ 語彙クイズ画面</span>
+    <span class="tag-id">4択クイズ</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item active"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">語彙クイズ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-layout">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+            <span>問題 3 / 10</span>
+            <span style="color: var(--primary); font-weight: 700;">正答率 75%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 30%;"></div>
+          </div>
+
+          <div class="quiz-question">
+            「<strong>忖度</strong>」の意味として正しいものは?
+          </div>
+
+          <div class="quiz-options">
+            <div class="quiz-option">
+              <div class="quiz-option-letter">A</div>
+              <div>物事を細かく分析すること</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">B</div>
+              <div>他人の心を推し量ること</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">C</div>
+              <div>遠慮して控えめにすること</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">D</div>
+              <div>表面的に判断すること</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <div class="ad-banner">広告</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑥ ビジネスシチュエーションクイズ ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑥ ビジネスシチュエーションクイズ画面</span>
+    <span class="tag-id">場面別4択クイズ</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item active"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">ビジネスクイズ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-layout">
+          <div class="quiz-tabs">
+            <div class="quiz-tab active">敬語</div>
+            <div class="quiz-tab">メール</div>
+            <div class="quiz-tab">電話</div>
+            <div class="quiz-tab">報連相</div>
+            <div class="quiz-tab">取引先対応</div>
+            <div class="quiz-tab">お詫び</div>
+            <div class="quiz-tab">依頼</div>
+            <div class="quiz-tab">断り方</div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+            <span>問題 1 / 10 (敬語)</span>
+            <span style="color: var(--primary); font-weight: 700;">正答率 80%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 10%;"></div>
+          </div>
+
+          <div class="quiz-question" style="text-align: left; font-size: 15px;">
+            <div style="font-size: 12px; color: var(--text-sub); margin-bottom: 8px;">【場面】取引先からのメール返信</div>
+            「ご確認いただけますでしょうか」の返事として最も適切なのは?
+          </div>
+
+          <div class="quiz-options">
+            <div class="quiz-option">
+              <div class="quiz-option-letter">A</div>
+              <div>確認しました</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">B</div>
+              <div>確認いたしました</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">C</div>
+              <div>ご確認しました</div>
+            </div>
+            <div class="quiz-option">
+              <div class="quiz-option-letter">D</div>
+              <div>確認させていただきました</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑦ 学習記録 ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑦ 学習記録画面</span>
+    <span class="tag-id">統計・グラフ・履歴</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item active"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">学習記録</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="quiz-tabs">
+          <div class="quiz-tab active">添削</div>
+          <div class="quiz-tab">語彙クイズ</div>
+          <div class="quiz-tab">ビジネスクイズ</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value">42</div>
+            <div class="stat-label">添削回数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">78</div>
+            <div class="stat-label">平均スコア</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">12</div>
+            <div class="stat-label">連続日数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">85%</div>
+            <div class="stat-label">目標達成率</div>
+          </div>
+        </div>
+
+        <div class="record-layout">
+          <div class="card">
+            <div class="card-title">スコアの推移(直近7日)</div>
+            <div class="chart-placeholder">
+              <div class="chart-bar" style="height: 40%;"></div>
+              <div class="chart-bar" style="height: 55%;"></div>
+              <div class="chart-bar" style="height: 50%;"></div>
+              <div class="chart-bar" style="height: 65%;"></div>
+              <div class="chart-bar" style="height: 70%;"></div>
+              <div class="chart-bar" style="height: 78%;"></div>
+              <div class="chart-bar" style="height: 85%;"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">最近の添削履歴</div>
+            <div class="history-item">
+              <div>
+                <div class="history-title">自己PR(300字)</div>
+                <div class="history-meta">2026/10/15</div>
+              </div>
+              <div class="history-score">85</div>
+            </div>
+            <div class="history-item">
+              <div>
+                <div class="history-title">ガクチカ(500字)</div>
+                <div class="history-meta">2026/10/13</div>
+              </div>
+              <div class="history-score">72</div>
+            </div>
+            <div class="history-item">
+              <div>
+                <div class="history-title">志望動機(400字)</div>
+                <div class="history-meta">2026/10/10</div>
+              </div>
+              <div class="history-score">78</div>
+            </div>
+            <div style="text-align: center; margin-top: 12px;">
+              <a href="#" style="font-size: 13px; color: var(--primary); font-weight: 600;">もっと見る →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑧ マイページ ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑧ マイページ画面</span>
+    <span class="tag-id">プロフィール・チケット・設定</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item active"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">マイページ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="profile-layout">
+          <!-- 左:プロフィール -->
+          <div class="card profile-card">
+            <div class="avatar-large">柴</div>
+            <div style="font-weight: 700; font-size: 18px; margin-bottom: 4px;">柴谷 泰雅</div>
+            <div style="font-size: 13px; color: var(--text-sub); margin-bottom: 16px;">無料プラン</div>
+            <button class="btn btn-outline" style="width: 100%;">プロフィール編集</button>
+          </div>
+
+          <!-- 右:メニュー -->
+          <div>
+            <div class="ticket-card">
+              <div style="font-weight: 700; font-size: 16px; margin-bottom: 4px;">添削チケット</div>
+              <div style="font-size: 13px; color: var(--text-sub); margin-bottom: 16px;">30日間で100回まで添削できる買い切りプラン</div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 28px; font-weight: 700; color: var(--primary);">¥500</div>
+                <button class="btn">購入する →</button>
+              </div>
+            </div>
+
+            <ul class="menu-list">
+              <li><span>購入履歴</span><span style="color: var(--text-sub);">›</span></li>
+              <li><span>通知設定</span><span style="color: var(--text-sub);">›</span></li>
+              <li><span>利用規約</span><span style="color: var(--text-sub);">›</span></li>
+              <li><span>プライバシーポリシー</span><span style="color: var(--text-sub);">›</span></li>
+              <li style="color: var(--danger);"><span>ログアウト</span><span>›</span></li>
+              <li style="color: var(--text-sub); font-size: 12px;"><span>アカウント削除</span><span>›</span></li>
+            </ul>
+
+            <div class="ad-banner" style="margin-top: 16px;">広告</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑨ 購入履歴 ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑨ 購入履歴画面</span>
+    <span class="tag-id">マイページ > 購入履歴</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item active"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / マイページ / <span class="current">購入履歴</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <a href="#" style="color: var(--primary); font-size: 14px;">← マイページに戻る</a>
+        </div>
+
+        <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">購入履歴</h2>
+        <p style="color: var(--text-sub); font-size: 13px; margin-bottom: 24px;">過去に購入した添削チケットの一覧です</p>
+
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-light);">
+            <div style="font-size: 12px; color: var(--text-sub); display: flex; gap: 24px; flex: 1;">
+              <span style="width: 100px;">購入日</span>
+              <span style="flex: 1;">商品名</span>
+              <span style="width: 100px;">金額</span>
+              <span style="width: 100px;">ステータス</span>
+              <span style="width: 80px;">領収書</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border-light);">
+            <span style="width: 100px; font-size: 13px;">2026/10/15</span>
+            <span style="flex: 1; font-size: 13px;">添削チケット(30日100回)</span>
+            <span style="width: 100px; font-size: 13px;">¥500</span>
+            <span style="width: 100px;"><span style="background: #E0F2E9; color: var(--success); padding: 2px 8px; border-radius: 8px; font-size: 11px; font-weight: 600;">利用中</span></span>
+            <span style="width: 80px;"><a href="#" style="color: var(--primary); font-size: 12px;">PDF</a></span>
+          </div>
+          <div style="display: flex; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border-light);">
+            <span style="width: 100px; font-size: 13px;">2026/08/20</span>
+            <span style="flex: 1; font-size: 13px;">添削チケット(30日100回)</span>
+            <span style="width: 100px; font-size: 13px;">¥500</span>
+            <span style="width: 100px;"><span style="background: #F0F0F0; color: var(--text-sub); padding: 2px 8px; border-radius: 8px; font-size: 11px;">期限切れ</span></span>
+            <span style="width: 80px;"><a href="#" style="color: var(--primary); font-size: 12px;">PDF</a></span>
+          </div>
+          <div style="display: flex; align-items: center; padding: 16px 0;">
+            <span style="width: 100px; font-size: 13px;">2026/06/05</span>
+            <span style="flex: 1; font-size: 13px;">添削チケット(30日100回)</span>
+            <span style="width: 100px; font-size: 13px;">¥500</span>
+            <span style="width: 100px;"><span style="background: #F0F0F0; color: var(--text-sub); padding: 2px 8px; border-radius: 8px; font-size: 11px;">期限切れ</span></span>
+            <span style="width: 80px;"><a href="#" style="color: var(--primary); font-size: 12px;">PDF</a></span>
+          </div>
+        </div>
+
+        <p style="text-align: center; color: var(--text-sub); font-size: 11px; margin-top: 16px;">
+          ※ 領収書PDFは購入から7年間ダウンロード可能です
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑩ 通知設定 ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑩ 通知設定画面</span>
+    <span class="tag-id">マイページ > 通知設定</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item active"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / マイページ / <span class="current">通知設定</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <a href="#" style="color: var(--primary); font-size: 14px;">← マイページに戻る</a>
+        </div>
+
+        <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">通知設定</h2>
+        <p style="color: var(--text-sub); font-size: 13px; margin-bottom: 24px;">通知の受け取り方を設定できます</p>
+
+        <div class="card">
+          <div class="card-title">プッシュ通知</div>
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title">デイリーリマインダー</div>
+              <div class="toggle-desc">毎日決まった時間に学習を促す通知を送ります</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title">通知時刻</div>
+              <div class="toggle-desc">リマインダーを送信する時刻</div>
+            </div>
+            <select class="select-field">
+              <option>朝 8:00</option>
+              <option>昼 12:00</option>
+              <option selected>夕方 19:00</option>
+              <option>夜 21:00</option>
+            </select>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title">ストリーク途切れ警告</div>
+              <div class="toggle-desc">連続学習日数が途切れそうな時に通知</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">メール通知</div>
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title">週次レポート</div>
+              <div class="toggle-desc">学習状況のサマリーを毎週月曜にメールで送信</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title">新機能・キャンペーン情報</div>
+              <div class="toggle-desc">サービスのアップデート情報をメールで受け取る</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 24px;">
+          <button class="btn btn-outline" style="flex: 1;">キャンセル</button>
+          <button class="btn" style="flex: 2;">設定を保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑪ 利用規約 ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑪ 利用規約画面</span>
+    <span class="tag-id">マイページ > 利用規約 / 別タブ表示</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item active"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / マイページ / <span class="current">利用規約</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <a href="#" style="color: var(--primary); font-size: 14px;">← マイページに戻る</a>
+        </div>
+
+        <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">利用規約</h2>
+        <p style="color: var(--text-sub); font-size: 13px; margin-bottom: 24px;">最終更新日:2026年5月18日</p>
+
+        <div class="card terms-card">
+          <h3 class="terms-h3">第1条(適用)</h3>
+          <p class="terms-p">本規約は、作文ナビ(以下「本サービス」といいます)の利用に関する条件を、本サービスを利用する全てのユーザー(以下「利用者」といいます)と当チーム(以下「運営者」といいます)との間で定めるものです。</p>
+
+          <h3 class="terms-h3">第2条(利用登録)</h3>
+          <p class="terms-p">本サービスの利用には、Googleアカウントによる認証が必要です。利用者はGoogleアカウントでログインすることで、本規約に同意したものとみなされます。</p>
+
+          <h3 class="terms-h3">第3条(禁止事項)</h3>
+          <p class="terms-p">利用者は、以下の行為をしてはなりません。</p>
+          <ul class="terms-list">
+            <li>法令または公序良俗に違反する行為</li>
+            <li>運営者または第三者の知的財産権、プライバシー権を侵害する行為</li>
+            <li>本サービスの運営を妨害するおそれのある行為</li>
+            <li>不正アクセス、リバースエンジニアリング等の行為</li>
+          </ul>
+
+          <h3 class="terms-h3">第4条(本サービスの提供の停止等)</h3>
+          <p class="terms-p">運営者は、本サービスの提供を予告なく停止または中断する場合があります。これにより利用者に生じた損害について、運営者は一切の責任を負いません。</p>
+
+          <h3 class="terms-h3">第5条(課金と返金)</h3>
+          <p class="terms-p">添削チケット(500円・30日間100回)の購入後、サービスの性質上、返金には応じられません。ただし、運営者の責に帰すべき事由でサービスを提供できなかった場合はこの限りではありません。</p>
+
+          <h3 class="terms-h3">第6条(免責事項)</h3>
+          <p class="terms-p">本サービスのAI添削結果は参考情報であり、その正確性・完全性を保証するものではありません。利用者は自己責任で本サービスを利用するものとします。</p>
+
+          <h3 class="terms-h3">第7条(規約の変更)</h3>
+          <p class="terms-p">運営者は、必要と判断した場合には、利用者に通知することなく本規約を変更することができます。</p>
+
+          <h3 class="terms-h3">第8条(準拠法・裁判管轄)</h3>
+          <p class="terms-p">本規約の解釈には日本法を準拠法とし、本サービスに関して紛争が生じた場合には、運営者所在地を管轄する裁判所を専属的合意管轄とします。</p>
+
+          <p class="terms-p" style="text-align: right; margin-top: 32px; font-size: 12px; color: var(--text-sub);">
+            以上<br>
+            制定日:2026年5月18日
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑫ プライバシーポリシー ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑫ プライバシーポリシー画面</span>
+    <span class="tag-id">マイページ > プライバシーポリシー / 別タブ表示</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item active"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / マイページ / <span class="current">プライバシーポリシー</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <a href="#" style="color: var(--primary); font-size: 14px;">← マイページに戻る</a>
+        </div>
+
+        <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">プライバシーポリシー</h2>
+        <p style="color: var(--text-sub); font-size: 13px; margin-bottom: 24px;">最終更新日:2026年5月18日</p>
+
+        <div class="card terms-card">
+          <h3 class="terms-h3">1. 取得する情報</h3>
+          <p class="terms-p">本サービスでは、以下の情報を取得します。</p>
+          <ul class="terms-list">
+            <li>Googleアカウントから取得する情報(氏名、メールアドレス、プロフィール画像)</li>
+            <li>利用者が入力した作文・お題・添削結果</li>
+            <li>クイズの解答履歴とスコア</li>
+            <li>利用ログ(アクセス日時、利用機能、デバイス情報)</li>
+            <li>Cookie等のID情報</li>
+          </ul>
+
+          <h3 class="terms-h3">2. 利用目的</h3>
+          <p class="terms-p">取得した情報は以下の目的で利用します。</p>
+          <ul class="terms-list">
+            <li>本サービスの提供・運営</li>
+            <li>利用者の認証および本人確認</li>
+            <li>サービスの改善・新機能開発</li>
+            <li>利用状況の分析(統計データの作成)</li>
+            <li>利用者からのお問い合わせへの対応</li>
+          </ul>
+
+          <h3 class="terms-h3">3. 外部サービスへの送信</h3>
+          <p class="terms-p" style="background: #FFF8E0; padding: 12px; border-left: 3px solid var(--accent); margin-bottom: 12px;">
+            <strong>※ 重要:</strong> 利用者が入力した作文内容は、AI添削処理のためAnthropic社のClaude APIに送信されます。送信されたデータはAnthropic社のポリシーに基づいて取り扱われ、AIモデルの学習には使用されません。
+          </p>
+
+          <h3 class="terms-h3">4. 第三者提供</h3>
+          <p class="terms-p">運営者は、以下の場合を除き、利用者の同意なく個人情報を第三者に提供しません。</p>
+          <ul class="terms-list">
+            <li>法令に基づく場合</li>
+            <li>人の生命、身体または財産の保護のために必要な場合</li>
+            <li>統計的な処理を経て個人を特定できない形式に加工した場合</li>
+          </ul>
+
+          <h3 class="terms-h3">5. Cookieの使用</h3>
+          <p class="terms-p">本サービスは、サービス向上のためCookieを使用します。利用者はブラウザの設定でCookieを無効化することができますが、その場合一部機能が正常に動作しない可能性があります。</p>
+
+          <h3 class="terms-h3">6. 広告について</h3>
+          <p class="terms-p">本サービスでは、Google AdSenseによる広告を配信します。Googleは利用者の興味に基づく広告を表示するためCookieを使用することがあります。</p>
+
+          <h3 class="terms-h3">7. データの保管期間</h3>
+          <p class="terms-p">アカウント削除後、個人情報は速やかに削除します。ただし、購入履歴は税法上の保存義務に基づき7年間保管します。</p>
+
+          <h3 class="terms-h3">8. 利用者の権利</h3>
+          <p class="terms-p">利用者は、運営者に対して自己の個人情報の開示・訂正・削除を請求できます。マイページから「アカウント削除」を行うことで、関連する個人情報を削除できます。</p>
+
+          <h3 class="terms-h3">9. お問い合わせ</h3>
+          <p class="terms-p">本ポリシーに関するお問い合わせは、以下までお願いします。<br>
+          [運営者連絡先]</p>
+
+          <p class="terms-p" style="text-align: right; margin-top: 32px; font-size: 12px; color: var(--text-sub);">
+            制定日:2026年5月18日
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑬ ログアウト確認 ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑬ ログアウト確認(モーダル)</span>
+    <span class="tag-id">マイページ > ログアウト押下時</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item active"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main" style="position: relative;">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / <span class="current">マイページ</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <!-- 背景にマイページ画面が薄く見える(オーバーレイ) -->
+      <div class="main-content" style="opacity: 0.3; pointer-events: none;">
+        <div class="profile-layout">
+          <div class="card profile-card">
+            <div class="avatar-large">柴</div>
+            <div style="font-weight: 700; font-size: 18px;">柴谷 泰雅</div>
+            <div style="font-size: 13px; color: var(--text-sub);">無料プラン</div>
+          </div>
+          <div>
+            <div class="ticket-card">
+              <div style="font-weight: 700;">添削チケット</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- モーダル -->
+      <div class="modal-overlay">
+        <div class="modal-box">
+          <div class="modal-icon">⚠️</div>
+          <div class="modal-title">ログアウトしますか?</div>
+          <p class="modal-desc">
+            セッションが終了します。<br>
+            次回はGoogleアカウントで再ログインしてください。
+          </p>
+          <div class="modal-actions">
+            <button class="btn btn-outline" style="flex: 1;">キャンセル</button>
+            <button class="btn" style="flex: 1; background: var(--danger);">ログアウト</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ⑭ アカウント削除確認 ============ -->
+<div class="screen-wrap">
+  <div class="screen-tag">
+    <span>⑭ アカウント削除確認(モーダル)</span>
+    <span class="tag-id">マイページ > アカウント削除押下時</span>
+  </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">作文ナビ</div>
+        <div class="logo-sub">書く力を取り戻す</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">メニュー</div>
+        <div class="nav-item"><span class="nav-icon"></span>ホーム</div>
+        <div class="nav-item"><span class="nav-icon"></span>AI作文添削</div>
+        <div class="nav-item"><span class="nav-icon"></span>語彙クイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>ビジネスクイズ</div>
+        <div class="nav-item"><span class="nav-icon"></span>学習記録</div>
+        <div class="sidebar-section-title">アカウント</div>
+        <div class="nav-item active"><span class="nav-icon"></span>マイページ</div>
+      </nav>
+      <div class="sidebar-footer">© 作文ナビ 2026</div>
+    </aside>
+    <div class="main" style="position: relative;">
+      <div class="topbar">
+        <div class="breadcrumb">ホーム / マイページ / <span class="current">アカウント削除</span></div>
+        <div class="topbar-actions">
+          <div class="topbar-streak">🔥 連続12日</div>
+          <div class="topbar-avatar">柴</div>
+        </div>
+      </div>
+      <div class="main-content" style="opacity: 0.3; pointer-events: none;">
+        <div class="profile-layout">
+          <div class="card profile-card">
+            <div class="avatar-large">柴</div>
+          </div>
+          <div></div>
+        </div>
+      </div>
+
+      <!-- 危険度の高い削除モーダル -->
+      <div class="modal-overlay">
+        <div class="modal-box modal-danger">
+          <div class="modal-icon" style="color: var(--danger);">🗑️</div>
+          <div class="modal-title" style="color: var(--danger);">アカウントを削除しますか?</div>
+          <p class="modal-desc">
+            この操作は<strong>取り消せません</strong>。<br>
+            以下のデータがすべて削除されます。
+          </p>
+
+          <ul class="delete-list">
+            <li>プロフィール情報</li>
+            <li>添削履歴・スコアデータ</li>
+            <li>クイズの解答履歴</li>
+            <li>未使用の添削チケット(返金不可)</li>
+          </ul>
+
+          <p class="modal-desc" style="margin-top: 16px;">
+            続行する場合は、下の入力欄に<br>
+            <code style="background: #FFE5E5; padding: 2px 6px; border-radius: 4px; color: var(--danger); font-weight: 700;">削除します</code>
+            と入力してください
+          </p>
+
+          <input type="text" class="input-field" placeholder="削除します" style="margin-top: 12px; margin-bottom: 0;">
+
+          <div class="modal-actions" style="margin-top: 16px;">
+            <button class="btn btn-outline" style="flex: 1;">キャンセル</button>
+            <button class="btn" style="flex: 1; background: var(--danger);" disabled>削除する</button>
+          </div>
+
+          <p style="font-size: 11px; color: var(--text-sub); text-align: center; margin-top: 12px;">
+            ※ 購入履歴のみ法令により7年間保管されます
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
